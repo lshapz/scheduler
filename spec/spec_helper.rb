@@ -16,7 +16,7 @@ def reset_database
 end
 
 def clean_database
-  Artist.delete_all if defined?(Artist) && DB.tables.include?("artists")
-  Song.delete_all if defined?(Song) && DB.tables.include?("songs")
-  Genre.delete_all if defined?(Genre) && DB.tables.include?("genres")
+  Week.delete_all if defined?(Week) && DB.tables.include?("weeks")
+  Shift.delete_all if defined?(Shift) && DB.tables.include?("shifts")
+  Employee.delete_all if defined?(Employee) && DB.tables.include?("employees")
 end
