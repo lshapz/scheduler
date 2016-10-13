@@ -1,7 +1,7 @@
 class CreateShifts < ActiveRecord::Migration
   def change
     create_table :shifts do |t|
-      t.integer :designation
+      t.string :designation
     end
   end
 end

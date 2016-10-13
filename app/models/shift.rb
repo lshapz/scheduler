@@ -10,6 +10,13 @@ class Shift < ActiveRecord::Base
     @am_or_pm = am_or_pm  
     @week = Self.week
   end 
+
+  def self.populate
+    sequel = <<-SQL
+    insert into shifts (designation) values ('mona'), ('monp'), ('tuea'), ('tuep'), ('weda'), ('wedp'), ('thua'), ('thup'), ('fria'), ('frip'), ('sata'), ('satp'), ('suna'), ('sunp')
+      SQL
+    DB.execute(sequel)
+  end 
   
   def symbolize
     day = weekday[0..1]

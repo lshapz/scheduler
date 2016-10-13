@@ -2,13 +2,12 @@ class Employee < ActiveRecord::Base
 
   has_many :shifts
   
-  attr_reader :name, :id
-  attr_accessor :cannot_work
+  attr_accessor :cannot_work, :name, :id
 
   def initialize
     @name = name 
-      insert into table employees name = self.name 
-    @id = find_by(name).id 
+      #insert into table employees name = self.name 
+    #@id = find_by(name).id 
   end 
   
   def get_nope

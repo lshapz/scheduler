@@ -1,0 +1,10 @@
+class ShiftPopulator
+
+
+sequel = <<-SQL 
+[1] pry(main)* insert into shifts (designation) values ('mona'), ('monp'), ('tuea'), ('tuep'), ('weda'), ('wedp'), ('thua'), ('thup'), ('fria'), ('frip'), ('sata'), ('satp'), ('suna'), ('sunp')
+[1] pry(main)* SQL
+
+
+
+end 
