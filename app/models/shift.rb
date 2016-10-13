@@ -19,7 +19,7 @@ class Shift < ActiveRecord::Base
 
   def self.populate
     sequel = <<-SQL
-    insert into shifts (designation) values ('mona'), ('monp'), ('tuea'), ('tuep'), ('weda'), ('wedp'), ('thua'), ('thup'), ('fria'), ('frip'), ('sata'), ('satp'), ('suna'), ('sunp')
+    insert into shifts (designation) values ('mon1'), ('mon2'), ('tue1'), ('tue2'), ('wed1'), ('wed2'), ('thu1'), ('thu2'), ('fri1'), ('fri2'), ('sat1'), ('sat2'), ('sun1'), ('sun2')
       SQL
     DB.execute(sequel)
   end 
@@ -35,7 +35,6 @@ class Shift < ActiveRecord::Base
     else
       DB.execute("insert into employee_shifts_assigned (employee_id, shift_id) VALUES (#{me}, #{shift})")
     end
-
   end 
 
    def see_who_is_working_me
@@ -46,6 +45,10 @@ class Shift < ActiveRecord::Base
     SQL
     DB.execute(sql)
   end
+
+  def self.show_me
+    DB.execute("select shifts.designation, employees.name from employee_shifts_assigned join shifts on employee_shifts_assigned.shift_id = shifts.id join employees on employee_shifts_assigned.employee_id = employees.id")
+  end 
 
 
   # def symbolize
