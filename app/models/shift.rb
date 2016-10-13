@@ -24,6 +24,23 @@ class Shift < ActiveRecord::Base
     DB.execute(sequel)
   end 
   
+  def assign(emp)
+
+    me = emp.id 
+    shift = self.id 
+    sql = <<-
+    select * from employee_shifts_no_good where shift_id = #{me} AND employee_id = #{shift}
+    end 
+
+    thing = DB.execute(sql)
+    if thing != true
+      DB.execute("insert into employee_shifts_assigned (employee_id, shift_id) VALUES (#{me}, #{shift})"))
+    else
+       "you can't assign me there"
+    end
+
+  end 
+
   # def symbolize
   #   day = weekday[0..1]
   #   time = am_or_pm[0]

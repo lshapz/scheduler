@@ -41,6 +41,16 @@ class Employee < ActiveRecord::Base
   end
 
 
+
+  def see_when_you_are_assigned
+    sql = <<-SQL
+      select shifts.designation, employees.name from employee_shifts_assigned 
+      join employees on employee_shifts_assigned.employee_id = employees.id 
+      join shifts on employee_shifts_assigned.shift_id = shifts.id;
+    SQL
+    DB.execute(sql)
+  end
+
   def shift_hash
     y = {}
     Shift.all.each {|x| 
