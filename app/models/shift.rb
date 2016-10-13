@@ -3,7 +3,7 @@ class Shift < ActiveRecord::Base
   belongs_to :week
   belongs_to :employee 
 
-  attr_accessor :weekday, :am_or_pm, :week, :employee
+  attr_accessor :weekday, :am_or_pm, :week, :employee, :designation
   
   def initialize(weekday: , am_or_pm: )
     @weekday = weekday 
