@@ -3,8 +3,8 @@ source "https://rubygems.org"
 
 # gem "rails"
 gem 'sqlite3'
-gem 'activerecord'
+gem 'activerecord' 
 gem 'sinatra-activerecord'
 gem 'rake'
 gem 'rspec'
-gem 'pry'
+gem 'pry-byebug'

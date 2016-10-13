@@ -25,10 +25,10 @@ class Employee < ActiveRecord::Base
        #nicole.shift_hash.first.first.designation finds it
        #nicole.shift_hash.flatten.first.designation finds it 
     #nah.each {|x| insert into employee_shifts_no_good (shift_id, employee_id) VALUES (x.id where x == shift.designation) (self.id)}
-    nah.each {|x|   shift =  Shift.find_by(designation: x).id
+    nah.each {|x|   shift =  Shift.find_by(designation: x)
+      shift = shift.id
         DB.execute ("insert into employee_shifts_no_good (employee_id, shift_id) VALUES (#{me}, #{shift})")
-
-    }
+    } 
   end 
 
   def see_when_you_cannot_work

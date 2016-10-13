@@ -1,5 +1,4 @@
 task :environment do
-  ENV["SCHEDULER"] ||= "development"
   require_relative 'config/environment'
   # require 'logger'
   # ActiveRecord::Base.logger = Logger.new(STDOUT)
