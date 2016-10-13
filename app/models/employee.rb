@@ -32,11 +32,18 @@ class Employee < ActiveRecord::Base
   end 
 
   def see_when_you_cannot_work
+    me = self.id
+
     sql = <<-SQL
       select shifts.designation, employees.name from employee_shifts_no_good 
-      join employees on employee_shifts_no_good.employee_id = employees.id 
+      join employees on employee_shifts_no_good.employee_id = #{me} 
       join shifts on employee_shifts_no_good.shift_id = shifts.id;
     SQL
+
+#     Employee
+#        .select('shifts.designation, employees.name')
+#       .joins(:employee_shifts_no_good)
+#       .find_by('people.name' => 'John') # this should be the last
     DB.execute(sql)
   end
 

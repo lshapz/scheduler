@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+#require 'Pry'
+require_relative '../config/environment'
+
+cli = BossCli.new
+cli.runner
+Pry.start

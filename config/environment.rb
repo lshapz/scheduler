@@ -4,7 +4,6 @@ Bundler.require
 
 require 'active_record'
 require 'rake'
-require_relative '../app/cli.rb'
  # set :database, {adapter: "sqlite3", database: "foo.sqlite3"}
   
 
@@ -12,6 +11,7 @@ require_relative '../app/cli.rb'
 ENV["SCHEDULER"] ||= "development"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../app/clis", "*.rb")].each {|f| require f}
 Dir[File.join(File.dirname(__FILE__), "../lib/support", "*.rb")].each {|f| require f}
 #binding.pry
 DBRegistry[ENV["SCHEDULER"]].connect! 
