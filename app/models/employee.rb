@@ -44,7 +44,7 @@ class Employee < ActiveRecord::Base
 
   def see_when_you_are_assigned
     sql = <<-SQL
-      select shifts.designation, employees.name from employee_shifts_assigned 
+      select shifts.designation from employee_shifts_assigned 
       join employees on employee_shifts_assigned.employee_id = employees.id 
       join shifts on employee_shifts_assigned.shift_id = shifts.id;
     SQL

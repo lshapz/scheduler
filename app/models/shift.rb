@@ -41,6 +41,16 @@ class Shift < ActiveRecord::Base
 
   end 
 
+   def see_who_is_working_me
+    sql = <<-SQL
+      select employees.name from employee_shifts_assigned 
+      join employees on employee_shifts_assigned.employee_id = employees.id 
+      join shifts on employee_shifts_assigned.shift_id = shifts.id;
+    SQL
+    DB.execute(sql)
+  end
+
+
   # def symbolize
   #   day = weekday[0..1]
   #   time = am_or_pm[0]
