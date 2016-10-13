@@ -51,13 +51,13 @@ class Employee < ActiveRecord::Base
     DB.execute(sql)
   end
 
-  def shift_hash
-    y = {}
-    Shift.all.each {|x| 
-      y[x] = nil 
-    }
-    y
-  end 
+  # def shift_hash
+  #   y = {}
+  #   Shift.all.each {|x| 
+  #     y[x] = nil 
+  #   }
+  #   y
+  # end 
 
 
 end 
