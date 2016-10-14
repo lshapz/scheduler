@@ -42,7 +42,7 @@ BossRunner
 
           ?? should the app warn about clopenings / overtime or is that the boss's job manually?
 
-      d) will soon: offer to offers to finalize schedule once all 14 shifts are filled 
+      d) will soon: offer to finalize schedule once all 14 shifts are filled 
 
         i) will displays complete_schedule
 

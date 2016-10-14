@@ -3,4 +3,5 @@
 require_relative '../config/environment'
 
 cli = EmployeeCLI.new
+EmployeeCLI.populate 
 cli.runner
