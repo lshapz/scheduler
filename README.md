@@ -19,7 +19,7 @@ Employee Runner
 
     1) takes availability, stores it to employee_shifts_no_good 
     
-    2) displays full schedule 
+    2) displays full schedule in a nice clean format 
 
        a) will soon be able to display just your (named employee's) shifts 
 
@@ -38,7 +38,7 @@ BossRunner
 
         i) will assign, then check out the schedule-so-far
             
-        ii) will allowsthe boss to un-assign a shift if she decides she needs to rearrange 
+        ii) will allow the boss to un-assign a shift if she decides she needs to rearrange 
 
           ?? should the app warn about clopenings / overtime or is that the boss's job manually?
 
@@ -46,11 +46,11 @@ BossRunner
 
         i) will displays complete_schedule
 
-        ii) if she confirms, displays complete_schedule and employee_shifts_no_good one last time (for emailing, etc)
+        ii) if she confirms, will display complete_schedule & employee_shifts_no_good (for email)
 
-        iii) clears employee_shifts_no_good, for next week's use 
+        iii) will clear employee_shifts_no_good, for next week's use 
   
-    2) displays full schedule 
+    2) displays full schedule in a nice clean format 
 
       a) will soon be able to display each employee's schedule sorted out, for timesheets
  
