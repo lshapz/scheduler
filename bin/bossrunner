@@ -3,5 +3,7 @@
 require_relative '../config/environment'
 
 cli = BossCli.new
-cli.runner
+#cli.runner
+BossCli.populate
+cli.completed
 Pry.start

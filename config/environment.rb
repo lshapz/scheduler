@@ -34,7 +34,7 @@ def migrate_db
 end
 
 def drop_db
-  DB.tables.each do |table|
+  DB.data_sources.each do |table|
     DB.execute("DROP TABLE #{table}")
   end
 
