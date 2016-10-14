@@ -24,18 +24,18 @@ class Shift < ActiveRecord::Base
     DB.execute(sequel)
   end 
   
-  def assign(emp)
+  # def assign(emp)
 
-    me = emp.id 
-    shift = self.id
+  #   me = emp.id 
+  #   shift = self.id
 
-    thing = DB.execute("select * from employee_shifts_no_good where shift_id = #{shift} AND employee_id = #{me}")
-    if thing.empty? == false
-      "you can't assign me there"
-    else
-      DB.execute("insert into employee_shifts_assigned (employee_id, shift_id) VALUES (#{me}, #{shift})")
-    end
-  end 
+  #   thing = DB.execute("select * from employee_shifts_no_good where shift_id = #{shift} AND employee_id = #{me}")
+  #   if thing.empty? == false
+  #     "you can't assign me there"
+  #   else
+  #     DB.execute("insert into employee_shifts_assigned (employee_id, shift_id) VALUES (#{me}, #{shift})")
+  #   end
+  # end 
 
    def see_who_is_working_me
     sql = <<-SQL

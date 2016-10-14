@@ -47,7 +47,16 @@ class Employee < ActiveRecord::Base
     DB.execute(sql)
   end
 
-
+  def am_I_free(shift)
+      me = self.id
+      shift_id = shift.id 
+  thing = DB.execute("select * from employee_shifts_no_good where shift_id = #{shift_id} AND employee_id = #{me}")
+    if thing.empty? == false
+      false
+    else 
+      true
+    end 
+  end 
 
   def see_when_you_are_assigned
     sql = <<-SQL

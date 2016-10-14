@@ -23,34 +23,14 @@ def clear_avails
  DB.execute("DELETE * FROM employee_shifts_no_good")
 end 
 
-# def schedule_runner
-#   monday_AM 
-#   monday_PM
-#   tuesday_AM
-#   tuesday_PM
-#   wednesday_AM
-#   wednesday_PM
-#   thursday_AM
-#   thursday_PM
-#   friday_AM
-#   friday_PM
-#   saturday_AM
-#   saturday_PM
-#   sunday_AM
-#   sunday_PM
+
+# def check_avail(shift_id:, employee_id:)
+#     sql = <<-SQL
+#       select * from employee_shifts_no_good 
+#       where employee_shifts_no_good.shift_id = #{shift_id} AND employee_shifts_no_good.employee_id = #{employee_id}
+#         SQL
+#     thing = DB.execute(sql)
 # end 
-
-
-#end 
-
-
-def check_avail(shift_id:, employee_id:)
-    sql = <<-SQL
-      select * from employee_shifts_no_good 
-      where employee_shifts_no_good.shift_id = #{shift_id} AND employee_shifts_no_good.employee_id = #{employee_id}
-        SQL
-    thing = DB.execute(sql)
-end 
 
 
 def get_employee
@@ -63,21 +43,45 @@ def get_employee
     employee
   end 
 
+  def get_shift
+      input = gets.chomp 
+       #binding.pry
+      shift = Shift.all.find_by(designation: input.downcase)
 
-  
-  def monday_AM 
-    puts "who should work Monday morning?"
-    employee = get_employee
-    shift_id = 1
-    thing = check_avail(shift_id: shift_id, employee_id: employee.id)
-      if !thing.empty?  
-        puts "they are busy, try again"
-        monday_AM
-      else 
-        DB.execute("insert into employee_shifts_assigned (shift_id, employee_id) values (#{shift_id}, #{employee.id})")
+    if shift == nil 
+      puts "we are not open then"
+        get_shift
       end 
-    complete_schedule
+    shift
   end 
+
+
+def assign
+  puts "what shift do you want to assign? format as mona, frip, etc."
+    shift = get_shift
+  puts "who do you want to put there?"
+    employee = get_employee
+   if employee.am_I_free(shift) == false 
+      "they are busy, try again"
+        assign
+    else 
+    DB.execute("insert into employee_shifts_assigned (employee_id, shift_id) VALUES (#{employee.id}, #{shift.id})")
+    self.complete_schedule
+  end 
+end 
+
+def schedule_runner
+  assign 
+  puts "more assignments? yes or Y for yes, anything else means no"
+  input = gets 
+    case input
+      when "yes" || "Y"
+        assign
+      else
+        self.complete_schedule
+    end 
+  end 
+
 
 def runner 
   #@me = who_am_I
