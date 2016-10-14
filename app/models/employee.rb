@@ -36,7 +36,8 @@ class Employee < ActiveRecord::Base
 
     sql = <<-SQL
       select shifts.designation, employees.name from employee_shifts_no_good 
- where  shifts.id;
+      join employees on employee_shifts_no_good.employee_id = #{me} 
+      join shifts on employee_shifts_no_good.shift_id = shifts.id;
     SQL
 
 #     Employee
