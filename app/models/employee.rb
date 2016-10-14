@@ -29,6 +29,8 @@ class Employee < ActiveRecord::Base
       shift = shift.id
         DB.execute ("insert into employee_shifts_no_good (employee_id, shift_id) VALUES (#{me}, #{shift})")
     } 
+    #binding.pry
+    #puts foo 
   end 
 
   def see_when_you_cannot_work
@@ -48,9 +50,8 @@ class Employee < ActiveRecord::Base
   end
 
   def am_I_free(shift)
-      me = self.id
       shift_id = shift.id 
-  thing = DB.execute("select * from employee_shifts_no_good where shift_id = #{shift_id} AND employee_id = #{me}")
+  thing = DB.execute("select * from employee_shifts_no_good where shift_id = #{shift_id} AND employee_id = #{self.id}")
     if thing.empty? == false
       false
     else 

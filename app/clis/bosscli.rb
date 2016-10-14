@@ -15,7 +15,7 @@ def unavails
       join employees on employee_shifts_no_good.employee_id = employees.id 
       join shifts on employee_shifts_no_good.shift_id = shifts.id;
     SQL
-  y = DB.execute(sql)
+  y = DB.execute(sql) 
   clean_raw_data(y)
 end 
 
@@ -57,30 +57,39 @@ def get_employee
 
 
 def assign
-  puts "what shift do you want to assign? format as mona, frip, etc."
+  puts "what shift do you want to assign? format as mon1, fri2, etc."
     shift = get_shift
+  # if shift.am_I_booked == true 
+  #     puts "no, you did that one."
+  # else
   puts "who do you want to put there?"
     employee = get_employee
+  #end 
+
    if employee.am_I_free(shift) == false 
-      "they are busy, try again"
+      puts "they are busy, try again"
         assign
     else 
     DB.execute("insert into employee_shifts_assigned (employee_id, shift_id) VALUES (#{employee.id}, #{shift.id})")
+      #binding.pry
     self.complete_schedule
   end 
+
 end 
 
 def schedule_runner
   assign 
   puts "more assignments? yes or Y for yes, anything else means no"
-  input = gets 
-    case input
-      when "yes" || "Y"
-        assign
-      else
-        self.complete_schedule
+  input = gets.chomp
+    if input == "yes" || input == "Y" || input == "y"
+        schedule_runner
+    else
+      self.complete_schedule
+        if self.complete_schedule.length > 14 
+          puts "you have too many workers, btw"
+        end 
     end 
-  end 
+end 
 
 
 def runner 
@@ -120,7 +129,6 @@ def clean_raw_data(raw)
       k.is_a? Fixnum
     end
   end 
-
   #binding.pry 
   arr = []
   raw.each do |x|
@@ -130,14 +138,20 @@ def clean_raw_data(raw)
   end
 
   why = arr.each_slice(2).to_a
-  show = why.each_with_object({}) {|x, hash| hash[x[0]] = x[1]}   
+  show = why.each_with_object({}) {|x, hash| 
+      if hash.keys.include?(x[0])
+        hash[x[0]]
+        hash[x[0]] << x[1]
+      else
+         hash[x[0]] = [x[1]]
+      end
+       }   
     #binding.pry 
-
      show.each do |k, v| 
           if k.last == "1"
-            puts "#{k[0].upcase}#{k[1..-2]} morning: #{v[0].upcase}#{v[1..-1]}"
+            puts "#{k[0].upcase}#{k[1..-2]} morning: #{v}"
           elsif k.last == "2"
-            puts "#{k[0].upcase}#{k[1..-2]} evening: #{v[0].upcase}#{v[1..-1]}"
+            puts "#{k[0].upcase}#{k[1..-2]} evening: #{v}"
           else
             puts "that is not a real shift"
         end 

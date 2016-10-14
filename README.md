@@ -24,7 +24,7 @@ Employee Runner
        a) will soon be able to display just your (named employee's) shifts 
 
 
-BossRunner
+  BossRunner
 
   Asks if you're making a schedule or viewing a schedule
 
@@ -34,9 +34,9 @@ BossRunner
       
       b) will soon drop/clear previous week schedule
       
-      c) will soon be able to assign people to shifts 
+      c) can assign people to shifts 
 
-        i) will assign, then check out the schedule-so-far
+        i) if assignment is valid, submits it, then displays the schedule-so-far
             
         ii) will allow the boss to un-assign a shift if she decides she needs to rearrange 
 

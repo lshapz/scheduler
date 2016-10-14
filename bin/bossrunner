@@ -5,4 +5,4 @@ require_relative '../config/environment'
 cli = BossCli.new
 cli.runner
 #BossCli.populate
-Pry.start
+#Pry.start

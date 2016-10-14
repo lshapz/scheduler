@@ -46,6 +46,15 @@ class Shift < ActiveRecord::Base
     DB.execute(sql)
   end
 
+  def am_I_booked
+        thing = DB.execute("select * from employee_shifts_assigned where shift_id = #{self.id}")
+      if thing.empty?
+        true
+      else
+        false
+      end 
+    end 
+
   def self.show_me
     DB.execute("select shifts.designation, employees.name from employee_shifts_assigned join shifts on employee_shifts_assigned.shift_id = shifts.id join employees on employee_shifts_assigned.employee_id = employees.id")
   end 
