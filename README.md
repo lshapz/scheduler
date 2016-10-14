@@ -59,16 +59,16 @@ BossRunner
 
 stretch goals:
 
--if someone worked 3 shifts last week, they work 4 this week unless they can't for availability reasons 
+  if someone worked 3 shifts last week, they work 4 this week unless they can't for availability reasons 
 
--ideally, nobody clopens (works monday pm then tuesday am, or so forth)
+  ideally, nobody clopens (works monday pm then tuesday am, or so forth)
 
--nobody gets more than 40 hours total
+  nobody gets more than 40 hours total
 
-  --weekday_evening shifts are worth 6.5 
+    weekday_evening shifts are worth 6.5 
 
-  --weekend_evening shifts are worth 4-5 
+    weekend_evening shifts are worth 4-5 
 
-the boss can hire and fire people (remove and add to employees table)
+  the boss can hire and fire people (remove and add to employees table)
 
-the boss can update the schedule if someone trades shifts??? 
+  the boss can update the schedule if someone trades shifts??? 
