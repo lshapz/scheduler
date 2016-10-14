@@ -15,7 +15,7 @@ Employee Runner
 
     1) points name to an Employee Object / row in table employees
 
-  Asks if you're is giving availability or looking for a schedule
+  Asks if you're giving availability or looking for a schedule
 
     1) takes availability, stores it to employee_shifts_no_good 
     
