@@ -1,4 +1,5 @@
 require 'pry-byebug'
+
 class BossCli
 
 attr_accessor :populate, :me, :nope
@@ -20,7 +21,7 @@ def unavails
 end 
 
 def clear_avails
- DB.execute("DELETE * FROM employee_shifts_no_good")
+  DB.execute("DELETE * FROM employee_shifts_no_good")
 end 
 
 
@@ -47,11 +48,10 @@ def get_employee
       input = gets.chomp 
        #binding.pry
       shift = Shift.all.find_by(designation: input.downcase)
-
-    if shift == nil 
-      puts "we are not open then"
-        get_shift
-      end 
+      if shift == nil 
+        puts "we are not open then"
+          get_shift 
+        end 
     shift
   end 
 
@@ -62,6 +62,12 @@ def assign
   # if shift.am_I_booked == true 
   #     puts "no, you did that one."
   # else
+    taken = DB.execute("SELECT * FROM employee_shifts_assigned join shifts on employee_shifts_assigned.shift_id = shifts.id where shifts.id = #{shift.id}")
+
+       if !taken.empty? 
+          puts "you've already scheduled someone for then"
+          get_shift
+        end 
   puts "who do you want to put there?"
     employee = get_employee
   #end 
@@ -77,9 +83,28 @@ def assign
 
 end 
 
+def de_assign
+  puts "what shift do you want to delete?"
+    shift = get_shift
+
+taken = DB.execute("SELECT * FROM employee_shifts_assigned join shifts on employee_shifts_assigned.shift_id = shifts.id where shifts.id = #{shift.id}")
+  if taken.empty? 
+    puts "nobody to remove!"
+else 
+  DB.execute("delete from employee_shifts_assigned where employee_shifts_assigned.shift_id = #{shift.id}")
+end 
+
+end 
+
 def schedule_runner
-  assign 
-  puts "more assignments? yes or Y for yes, anything else means no"
+  puts "assign (1) or de_assign (2)?"
+  input = gets.chomp
+    if input == "1" || input == 1
+      assign 
+    elsif input == "2" || input == 2
+      de_assign
+    end 
+  puts "more to do? yes or Y for yes, anything else means no"
   input = gets.chomp
     if input == "yes" || input == "Y" || input == "y"
         schedule_runner
@@ -115,7 +140,7 @@ def complete_schedule
   select shifts.designation, employees.name 
     from employee_shifts_assigned join employees
     on employee_shifts_assigned.employee_id = employees.id 
-    join shifts on employee_shifts_assigned.shift_id = shifts.id;
+    join shifts on employee_shifts_assigned.shift_id = shifts.id order by shifts.id;
     SQL
 
     y = DB.execute(sql)
