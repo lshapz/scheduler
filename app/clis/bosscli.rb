@@ -14,7 +14,7 @@ def unavails
   sql = <<-SQL
       select shifts.designation, employees.name from employee_shifts_no_good 
       join employees on employee_shifts_no_good.employee_id = employees.id 
-      join shifts on employee_shifts_no_good.shift_id = shifts.id;
+      join shifts on employee_shifts_no_good.shift_id = shifts.id order by shifts.id;
     SQL
   y = DB.execute(sql) 
   clean_raw_data(y)
@@ -84,6 +84,7 @@ def assign
 end 
 
 def de_assign
+
   puts "what shift do you want to delete?"
     shift = get_shift
 
@@ -100,8 +101,14 @@ def schedule_runner
   puts "assign (1) or de_assign (2)?"
   input = gets.chomp
     if input == "1" || input == 1
+      puts "Here's what you can't do (oy gevalt):"
+      unavails
+      puts "and here's what you've done so far:"
+      self.complete_schedule 
       assign 
     elsif input == "2" || input == 2
+      puts "here's what you've done so far:"
+      self.complete_schedule
       de_assign
     end 
   puts "more to do? yes or Y for yes, anything else means no"
@@ -124,8 +131,7 @@ def runner
     input = gets.chomp
       case input
       when "1" || 1 
-          puts "Here's what you can't do (oy gevalt):"
-          unavails 
+           
           schedule_runner
           #many other methods, then once assignments check out,  clear_avails 
       when "2" || 2
