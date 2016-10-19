@@ -113,13 +113,13 @@ def schedule_runner
     end 
   puts "more to do? yes or Y for yes, anything else means no"
   input = gets.chomp
-    if input == "yes" || input == "Y" || input == "y"
+    if input.downcase == "yes" || input == "y"
         schedule_runner
     else
       self.complete_schedule
-        if self.complete_schedule.length > 14 
-          puts "you have too many workers, btw"
-        end 
+        # if self.complete_schedule.length > 14 
+        #   puts "you have too many workers, btw"
+        # end 
     end 
 end 
 

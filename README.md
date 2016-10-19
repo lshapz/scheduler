@@ -38,13 +38,13 @@ Employee Runner
 
         i) if assignment is valid, submits it, then displays the schedule-so-far
             
-        ii) will allow the boss to un-assign a shift if she decides she needs to rearrange 
+      d) can allow the boss to un-assign a shift if she decides she needs to rearrange 
 
-          ?? should the app warn about clopenings / overtime or is that the boss's job manually?
+   ?? should the app warn about clopenings / overtime or is that the boss's job manually?
 
-      d) will soon: offer to finalize schedule once all 14 shifts are filled 
+      e) will soon: offer to finalize schedule once all 14 shifts are filled 
 
-        i) will displays complete_schedule
+        i) will display complete_schedule
 
         ii) if she confirms, will display complete_schedule & employee_shifts_no_good (for email)
 

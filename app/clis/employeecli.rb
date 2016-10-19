@@ -11,7 +11,11 @@ end
 def who_am_I
   puts "What is your name?"
     input = gets.chomp
-  @me = Employee.find_by(name: input)
+  @me = Employee.find_by(name: input.downcase)
+  if @me == nil 
+    puts "Nobody by that name works here"
+      who_am_I
+    end 
 end 
 
 def get_nope
@@ -23,7 +27,8 @@ def runner
   #@me = who_am_I
   #@nope = get_nope
   #EmployeeCLI.populate
-  @me = who_am_I
+  who_am_I
+
   puts "Do you want to submit availability (1) or see the complete schedule (2)?"
   input = gets.chomp
     case input
